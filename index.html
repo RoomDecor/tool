@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 20px;
+            text-align: left;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            color: #007BFF;
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        textarea, input, button {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            display: block;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 15px;
+            background: #eef2ff;
+            border-radius: 5px;
+            font-size: 18px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">        
+        <label>Keyword:</label>
+        <input type="text" id="judul" maxlength="500">
+        
+        <label>Deskripsi 1:</label>
+        <textarea id="text1" maxlength="500"></textarea>
+        <label>Deskripsi 2:</label>
+        <textarea id="text2" maxlength="500"></textarea>
+        <label>Deskripsi 3:</label>
+        <textarea id="text3" maxlength="500"></textarea>
+        <label>Deskripsi 4:</label>
+        <textarea id="text4" maxlength="500"></textarea>
+        <label>Deskripsi 5:</label>
+        <textarea id="text5" maxlength="500"></textarea>
+        
+        <button onclick="generateOutput()">Generate</button>
+        
+        <div class="output" id="output"></div>
+    </div>
+    
+    <script>
+        function toTitleCase(str) {
+            return str.replace(/\b\w+/g, function(word) {
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            });
+        }
+
+        function generateOutput() {
+                        
+            let judul = document.getElementById("judul").value;
+            judul = toTitleCase(judul);
+            
+            const text1 = document.getElementById("text1").value;
+            const text2 = document.getElementById("text2").value;
+            const text3 = document.getElementById("text3").value;
+            const text4 = document.getElementById("text4").value;
+            const text5 = document.getElementById("text5").value;
+            
+            const output1 = `{25|37|47|28|36|44|29|38|45} {Best|Amazing|Discover|Ultimate|Seasonal|Top|Trends|Perfect|Simple|Hacks} ${judul} | Room Decor {Ideas|Inspo|Inspiration}`;
+            const outputParagraph = `{${text1}|${text2}|${text3}|${text4}|${text5}}`;
+            
+            document.getElementById("output").innerHTML = `<strong>Judul Canva:</strong><br><br>You are a professional Pinterest creator consultant to increase the number of clicks on the content I create. Create an SEO optimized title to increase the number of clicks on content with the keyword "${judul}". At the beginning of each title there is a random number between 20 and 40. Give me the list of 100. Each title must be unique and cannot be the same.<br><br><strong>Promt artikel:</strong><br><br>I need a professional SEO article writer. Create an informative and innovative article with the main keyword "${judul}". Write in English.<br><br><strong>Promt deskripsi:</strong><br><br>Create 5 SEO description pinterest with these keywords "${judul}". Include 5 popular hashtags related to that keyword. Create a description of 500 characters, no more.<br><br><br><br><center>=== NINJA PITEREST ===</center><br><br><strong>Titel:</strong><br><br>${output1}<br><br><strong>Deskripsi:</strong><br><br>${outputParagraph}`;
+        }
+    </script>
+</body>
+</html>
